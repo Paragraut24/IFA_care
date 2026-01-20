@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFA Care - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="profile-info">
+                    <div class="profile-avatar" id="userAvatar">P</div>
+                    <div class="profile-details">
+                        <h3 id="userName">Welcome</h3>
+                        <p id="pregnancyWeek">Loading...</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="icon-btn" onclick="showNotifications()">
+                        <span class="material-icons-round">notifications</span>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="icon-btn" onclick="goToPage('profile.html')">
+                        <span class="material-icons-round">settings</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Medicine Reminder Card -->
+            <div class="reminder-card">
+                <div class="reminder-header">
+                    <span class="material-icons-round">medication</span>
+                    <h3>IFA Tablet Reminder</h3>
+                </div>
+                <div class="time-display" id="reminderTime">8:30 PM</div>
+                <div class="medicine-name" id="medicineName">Iron & Folic Acid</div>
+
+                <div class="streak-container">
+                    <div class="streak-info">
+                        <span class="material-icons-round">local_fire_department</span>
+                        <span class="streak-text" id="streakCount">0 Days Streak</span>
+                    </div>
+                    <button class="settings-btn" onclick="goToPage('reminder-settings.html')">
+                        <span class="material-icons-round">tune</span>
+                    </button>
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="action-btn primary" onclick="markMedicineTaken()">
+                        <span class="material-icons-round">check_circle</span>
+                        Mark as Taken
+                    </button>
+                    <button class="action-btn secondary" onclick="markMedicineMissed()">
+                        <span class="material-icons-round">cancel</span>
+                        Missed
+                    </button>
+                </div>
+
+                <div class="intake-history">
+                    <p>Last taken: <span id="lastTaken">Not yet</span></p>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="section-header">
+                <h2>Quick Actions</h2>
+            </div>
+            <div class="quick-actions-grid">
+                <div class="action-card" onclick="goToPage('symptoms.html')">
+                    <div class="action-icon">
+                        <span class="material-icons-round">health_and_safety</span>
+                    </div>
+                    <h4>Log Symptoms</h4>
+                </div>
+                <div class="action-card" onclick="goToPage('awareness.html')">
+                    <div class="action-icon">
+                        <span class="material-icons-round">play_circle</span>
+                    </div>
+                    <h4>Learn</h4>
+                </div>
+                <div class="action-card" onclick="goToPage('appointment.html')">
+                    <div class="action-icon">
+                        <span class="material-icons-round">calendar_today</span>
+                    </div>
+                    <h4>Book Appointment</h4>
+                </div>
+                <div class="action-card" onclick="goToPage('emergency.html')">
+                    <div class="action-icon emergency">
+                        <span class="material-icons-round">phone</span>
+                    </div>
+                    <h4>Emergency</h4>
+                </div>
+            </div>
+
+            <!-- Health Summary -->
+            <div class="section-header">
+                <h2>Health Summary</h2>
+                <a href="health-history.html" class="view-all">View All</a>
+            </div>
+            <div class="health-summary-card">
+                <div class="summary-item">
+                    <span class="material-icons-round">medication</span>
+                    <div>
+                        <p class="summary-label">Adherence Rate</p>
+                        <p class="summary-value" id="adherenceRate">0%</p>
+                    </div>
+                </div>
+                <div class="summary-item">
+                    <span class="material-icons-round">favorite</span>
+                    <div>
+                        <p class="summary-label">Total Doses</p>
+                        <p class="summary-value" id="totalDoses">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Appointment -->
+            <div class="section-header">
+                <h2>Upcoming Appointment</h2>
+            </div>
+            <div class="appointment-preview" id="appointmentPreview">
+                <p>No upcoming appointments</p>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+        <!-- Floating Chat Button -->
+        <button class="fab-chat" onclick="toggleChat()">
+            <span class="material-icons-round">chat</span>
+        </button>
+
+        <!-- Chat Window -->
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <h3>AI Health Assistant</h3>
+                <button class="close-chat" onclick="toggleChat()">
+                    <span class="material-icons-round">close</span>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="chat-message bot">
+                    Hello! 👋 I'm your AI health assistant. How can I help you today?
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatEnter(event)">
+                <button onclick="sendChatMessage()">
+                    <span class="material-icons-round">send</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', initializeDashboard);
+    </script>
+</body>
+</html>

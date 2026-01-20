@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminder Settings - IFA Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <span class="material-icons-round">arrow_back</span>
+            </button>
+            <h1>Reminder Settings</h1>
+        </header>
+
+        <main class="main-content">
+            <form id="reminderSettingsForm" onsubmit="saveReminderSettings(event)">
+                <div class="form-section">
+                    <label class="form-label">Medicine Name</label>
+                    <input type="text" id="medicineName" value="Iron & Folic Acid" required>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Reminder Time</label>
+                    <input type="time" id="reminderTime" value="20:30" required>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Dosage</label>
+                    <select id="dosage">
+                        <option value="1">1 tablet</option>
+                        <option value="2">2 tablets</option>
+                        <option value="3">3 tablets</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Reminder Frequency</label>
+                    <select id="frequency">
+                        <option value="daily">Daily</option>
+                        <option value="alternate">Alternate Days</option>
+                        <option value="weekly">Weekly</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Reminder Days</label>
+                    <div class="day-selector">
+                        <label class="day-chip">
+                            <input type="checkbox" name="day" value="Mon" checked>
+                            <span>Mon</span>
+                        </label>
+                        <label class="day-chip">
+                            <input type="checkbox" name="day" value="Tue" checked>
+                            <span>Tue</span>
+                        </label>
+                        <label class="day-chip">
+                            <input type="checkbox" name="day" value="Wed" checked>
+                            <span>Wed</span>
+                        </label>
+                        <label class="day-chip">
+                            <input type="checkbox" name="day" value="Thu" checked>
+                            <span>Thu</span>
+                        </label>
+                        <label class="day-chip">
+                            <input type="checkbox" name="day" value="Fri" checked>
+                            <span>Fri</span>
+                        </label>
+                        <label class="day-chip">
+                            <input type="checkbox" name="day" value="Sat" checked>
+                            <span>Sat</span>
+                        </label>
+                        <label class="day-chip">
+                            <input type="checkbox" name="day" value="Sun" checked>
+                            <span>Sun</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Snooze Duration</label>
+                    <select id="snoozeDuration">
+                        <option value="5">5 minutes</option>
+                        <option value="10" selected>10 minutes</option>
+                        <option value="15">15 minutes</option>
+                        <option value="30">30 minutes</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <div class="toggle-setting">
+                        <div class="setting-info">
+                            <span class="material-icons-round">volume_up</span>
+                            <span>Sound Notification</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="soundToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <div class="toggle-setting">
+                        <div class="setting-info">
+                            <span class="material-icons-round">vibration</span>
+                            <span>Vibration</span>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="vibrationToggle" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Motivational Messages</label>
+                    <select id="messageStyle">
+                        <option value="baby">Baby-focused</option>
+                        <option value="health">Health-focused</option>
+                        <option value="motivational">Motivational</option>
+                        <option value="simple">Simple</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Save Settings</button>
+            </form>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadReminderSettings);
+    </script>
+</body>
+</html>

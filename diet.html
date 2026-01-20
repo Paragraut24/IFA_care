@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diet Plan - IFA Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <span class="material-icons-round">arrow_back</span>
+            </button>
+            <h1>Diet Plan</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="info-banner">
+                <span class="material-icons-round">info</span>
+                <p>Personalized nutrition plan for Trimester <span id="trimester">2</span></p>
+            </div>
+
+            <div id="dietPlan"></div>
+
+            <div class="section-header">
+                <h2>Foods to Enhance Iron Absorption</h2>
+            </div>
+            <div class="food-tips good">
+                <ul>
+                    <li>🍊 Citrus fruits (Vitamin C)</li>
+                    <li>🥦 Broccoli and leafy greens</li>
+                    <li>🍅 Tomatoes</li>
+                    <li>🫑 Bell peppers</li>
+                    <li>🥝 Kiwi and strawberries</li>
+                </ul>
+            </div>
+
+            <div class="section-header">
+                <h2>Foods to Avoid with IFA Tablets</h2>
+            </div>
+            <div class="food-tips avoid">
+                <ul>
+                    <li>☕ Tea and coffee (wait 2 hours)</li>
+                    <li>🥛 Calcium-rich dairy (separate timing)</li>
+                    <li>🌾 High-fiber cereals (during meals)</li>
+                    <li>🥤 Caffeinated beverages</li>
+                </ul>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item active">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+        <button class="fab-chat" onclick="toggleChat()">
+            <span class="material-icons-round">chat</span>
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadDietPlan);
+    </script>
+</body>
+</html>

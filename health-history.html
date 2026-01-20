@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health History - IFA Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <span class="material-icons-round">arrow_back</span>
+            </button>
+            <h1>Health History</h1>
+        </header>
+
+        <main class="main-content">
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="material-icons-round">medication</span>
+                    <div>
+                        <p class="stat-value" id="totalDosesStat">0</p>
+                        <p class="stat-label">Total Doses</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="material-icons-round">check_circle</span>
+                    <div>
+                        <p class="stat-value" id="adherenceRateStat">0%</p>
+                        <p class="stat-label">Adherence</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="material-icons-round">local_fire_department</span>
+                    <div>
+                        <p class="stat-value" id="currentStreak">0</p>
+                        <p class="stat-label">Current Streak</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="material-icons-round">emoji_events</span>
+                    <div>
+                        <p class="stat-value" id="bestStreak">0</p>
+                        <p class="stat-label">Best Streak</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Adherence Chart -->
+            <div class="chart-card">
+                <h3>Weekly Adherence</h3>
+                <canvas id="adherenceChart"></canvas>
+            </div>
+
+            <!-- Monthly Overview Chart -->
+            <div class="chart-card">
+                <h3>Monthly Overview</h3>
+                <canvas id="monthlyChart"></canvas>
+            </div>
+
+            <!-- Symptom Frequency Chart -->
+            <div class="chart-card">
+                <h3>Symptom Frequency</h3>
+                <canvas id="symptomChart"></canvas>
+            </div>
+
+            <!-- Timeline -->
+            <div class="section-header">
+                <h2>Recent Activity</h2>
+            </div>
+            <div id="activityTimeline"></div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item active">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+        <button class="fab-chat" onclick="toggleChat()">
+            <span class="material-icons-round">chat</span>
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', initializeHealthHistory);
+    </script>
+</body>
+</html>

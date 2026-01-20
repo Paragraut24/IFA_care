@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - IFA Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <span class="material-icons-round">arrow_back</span>
+            </button>
+            <h1>Book Appointment</h1>
+        </header>
+
+        <main class="main-content">
+            <form id="appointmentForm" onsubmit="submitAppointment(event)">
+                <div class="form-section">
+                    <label class="form-label">Appointment Type</label>
+                    <select id="appointmentType" required>
+                        <option value="">Select type</option>
+                        <option value="routine">Routine Checkup</option>
+                        <option value="ultrasound">Ultrasound</option>
+                        <option value="blood-test">Blood Test</option>
+                        <option value="consultation">Consultation</option>
+                        <option value="emergency">Emergency</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Preferred Date</label>
+                    <input type="date" id="appointmentDate" required>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Preferred Time</label>
+                    <div class="time-slots">
+                        <label class="time-slot">
+                            <input type="radio" name="timeSlot" value="09:00" required>
+                            <span>09:00 AM</span>
+                        </label>
+                        <label class="time-slot">
+                            <input type="radio" name="timeSlot" value="11:00">
+                            <span>11:00 AM</span>
+                        </label>
+                        <label class="time-slot">
+                            <input type="radio" name="timeSlot" value="14:00">
+                            <span>02:00 PM</span>
+                        </label>
+                        <label class="time-slot">
+                            <input type="radio" name="timeSlot" value="16:00">
+                            <span>04:00 PM</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Doctor Preference</label>
+                    <select id="doctorPreference">
+                        <option value="">Any Available</option>
+                        <option value="dr-sharma">Dr. Anjali Sharma</option>
+                        <option value="dr-patel">Dr. Priya Patel</option>
+                        <option value="dr-rodriguez">Dr. Elena Rodriguez</option>
+                    </select>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Reason for Visit</label>
+                    <textarea id="visitReason" rows="3" placeholder="Brief description..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Book Appointment</button>
+            </form>
+
+            <div class="section-header">
+                <h2>Upcoming Appointments</h2>
+            </div>
+            <div id="upcomingAppointments"></div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+        <button class="fab-chat" onclick="toggleChat()">
+            <span class="material-icons-round">chat</span>
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadAppointments);
+    </script>
+</body>
+</html>

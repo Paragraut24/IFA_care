@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFA Care - Maternal Health App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Material 3 Expressive Theme */
+            --primary: #C89A7C;
+            --primary-dark: #B58968;
+            --secondary: #E8C4A9;
+            --tertiary: #A8D5BA;
+            --surface: #FFF8F5;
+            --surface-variant: #F5E6DC;
+            --background: #FFFBFF;
+            --error: #BA1A1A;
+            --on-primary: #FFFFFF;
+            --on-surface: #1F1B16;
+            --on-background: #1F1B16;
+            --outline: #857167;
+            --shadow: rgba(0, 0, 0, 0.1);
+            --success: #4CAF50;
+            --warning: #FF9800;
+        }
+
+        body {
+            font-family: 'Poppins', 'Roboto', sans-serif;
+            background: var(--background);
+            color: var(--on-background);
+            overflow-x: hidden;
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            padding: 20px;
+            border-radius: 0 0 30px 30px;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #F8B195 0%, #F67280 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .profile-details h3 {
+            color: var(--on-primary);
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .profile-details p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+        }
+
+        .notification-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notification-icon:hover {
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(1.1);
+        }
+
+        /* Main Content */
+        .container {
+            padding: 20px;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        /* Reminder Card */
+        .reminder-card {
+            background: linear-gradient(135deg, #FFE8D6 0%, #FFD4BA 100%);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 30px rgba(200, 154, 124, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .reminder-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .time-display {
+            font-size: 48px;
+            font-weight: 700;
+            color: #6B4E71;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .medicine-name {
+            font-size: 20px;
+            font-weight: 600;
+            color: #4A4A4A;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .streak-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            padding: 12px 20px;
+            margin-bottom: 15px;
+        }
+
+        .streak-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: #4A4A4A;
+        }
+
+        .streak-icon {
+            font-size: 32px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(107, 78, 113, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #6B4E71 0%, #8B6E91 100%);
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .action-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 20px;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 4px 15px rgba(200, 154, 124, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(200, 154, 124, 0.4);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .action-card {
+            background: linear-gradient(135deg, #FFF 0%, var(--surface-variant) 100%);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--shadow);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            color: white;
+            font-size: 28px;
+        }
+
+        .action-card h4 {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--on-surface);
+        }
+
+        /* Section Headers */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--on-surface);
+        }
+
+        .view-all {
+            color: var(--primary);
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* Appointment Card */
+        .appointment-card {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(76, 175, 80, 0.15);
+        }
+
+        .appointment-header {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2E7D32;
+            margin-bottom: 10px;
+        }
+
+        .appointment-date {
+            font-size: 24px;
+            font-weight: 700;
+            color: #1B5E20;
+            margin-bottom: 12px;
+        }
+
+        .book-button {
+            background: linear-gradient(135deg, #66BB6A 0%, #43A047 100%);
+            color: white;
+            border: none;
+            border-radius: 15px;
+            padding: 12px 25px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(76, 175, 80, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .book-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+        }
+
+        /* Diet Card */
+        .diet-card {
+            background: linear-gradient(135deg, #E1F5E1 0%, #C5E8C5 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(168, 213, 186, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .diet-icon {
+            width: 70px;
+            height: 70px;
+            background: white;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .diet-content h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #2E7D32;
+            margin-bottom: 5px;
+        }
+
+        .diet-content p {
+            font-size: 13px;
+            color: #4A4A4A;
+            line-height: 1.4;
+        }
+
+        /* Previous Symptoms */
+        .symptoms-card {
+            background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.15);
+        }
+
+        .symptoms-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .symptoms-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #4A4A4A;
+            font-size: 14px;
+        }
+
+        .symptoms-list li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -4px 20px var(--shadow);
+            border-radius: 25px 25px 0 0;
+            z-index: 1000;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 20px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--outline);
+        }
+
+        .nav-item.active {
+            background: var(--surface-variant);
+            color: var(--primary);
+        }
+
+        .nav-item:hover {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 26px;
+        }
+
+        .nav-label {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Page Container */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Diet Page Styles */
+        .diet-plan-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px var(--shadow);
+            border-left: 5px solid var(--primary);
+        }
+
+        .meal-type {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .meal-items {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--on-surface);
+            margin-bottom: 10px;
+        }
+
+        .meal-details {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .nutrition-badge {
+            display: inline-block;
+            background: var(--surface-variant);
+            color: var(--primary);
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+            margin-right: 8px;
+        }
+
+        /* Learn Page Styles */
+        .video-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .play-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            background: white;
+        }
+
+        .video-info {
+            padding: 15px 20px;
+        }
+
+        .video-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--on-surface);
+            margin-bottom: 8px;
+        }
+
+        .video-meta {
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* Chat Page Styles */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 160px);
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .message {
+            max-width: 75%;
+            margin-bottom: 15px;
+            padding: 12px 18px;
+            border-radius: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .message.bot {
+            background: var(--surface-variant);
+            color: var(--on-surface);
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message.user {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            align-self: flex-end;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chat-input-container {
+            padding: 15px 20px;
+            background: white;
+            border-top: 1px solid #E0E0E0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 2px solid var(--surface-variant);
+            border-radius: 25px;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input:focus {
+            border-color: var(--primary);
+        }
+
+        .send-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .send-button:hover {
+            transform: scale(1.1);
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(33, 150, 243, 0.15);
+        }
+
+        .info-card h3 {
+            color: #1976D2;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            color: #4A4A4A;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Floating Action Button */
+        .fab {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            box-shadow: 0 4px 20px rgba(200, 154, 124, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(200, 154, 124, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .time-display {
+                font-size: 40px;
+            }
+
+            .quick-actions {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Home Page -->
+    <div id="homePage" class="page active">
+        <div class="header">
+            <div class="profile-section">
+                <div class="profile-info">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-details">
+                        <h3>Welcome, Priya</h3>
+                        <p>Week 24 | Trimester 2</p>
+                    </div>
+                </div>
+                <div class="notification-icon">
+                    <span class="material-icons-round" style="color: white;">notifications</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container fade-in">
+            <!-- Medicine Reminder Card -->
+            <div class="reminder-card">
+                <div class="time-display">8:30 PM</div>
+                <div class="medicine-name">IFA Tablet</div>
+                <div class="streak-container">
+                    <span class="streak-text">4 Days Streak</span>
+                    <span class="streak-icon">🏆</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 80%;"></div>
+                </div>
+                <button class="action-button" onclick="markAsTaken()">Mark as Taken</button>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <div class="action-card" onclick="showPage('chatPage')">
+                    <div class="action-icon">
+                        <span class="material-icons-round">chat_bubble</span>
+                    </div>
+                    <h4>Log Symptoms</h4>
+                </div>
+                <div class="action-card" onclick="showPage('learnPage')">
+                    <div class="action-icon">
+                        <span class="material-icons-round">play_circle</span>
+                    </div>
+                    <h4>Awareness Videos</h4>
+                </div>
+            </div>
+
+            <!-- Upcoming Appointment -->
+            <div class="appointment-card">
+                <div class="appointment-header">Upcoming Appointment</div>
+                <div class="appointment-date">17-01-2026</div>
+                <button class="book-button">Book Appointment</button>
+            </div>
+
+            <!-- Current Diet -->
+            <div class="section-header">
+                <h2>Current Diet</h2>
+                <a href="#" class="view-all" onclick="showPage('dietPage')">View All</a>
+            </div>
+            <div class="diet-card">
+                <div class="diet-icon">🥗</div>
+                <div class="diet-content">
+                    <h3>Balanced Nutrition</h3>
+                    <p>Brief with a touch of a diet description to the medium.</p>
+                </div>
+            </div>
+
+            <!-- Previous Symptoms -->
+            <div class="section-header">
+                <h2>Previous Requested Symptoms</h2>
+            </div>
+            <div class="symptoms-card">
+                <ul class="symptoms-list">
+                    <li>Mild nausea in morning</li>
+                    <li>Occasional headaches</li>
+                    <li>Back pain after sitting</li>
+                    <li>Fatigue in evening</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diet Page -->
+    <div id="dietPage" class="page">
+        <div class="header">
+            <div class="profile-section">
+                <div class="profile-info">
+                    <div class="profile-avatar">🍎</div>
+                    <div class="profile-details">
+                        <h3>Your Diet Plan</h3>
+                        <p>Trimester 2 Nutrition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container fade-in">
+            <div class="info-card">
+                <h3>💡 Nutrition Tips</h3>
+                <p>Focus on iron-rich foods to support your IFA supplementation. Include vitamin C to enhance iron absorption.</p>
+            </div>
+
+            <div class="diet-plan-card">
+                <div class="meal-type">🌅 Breakfast</div>
+                <div class="meal-items">Fortified Cereal with Milk</div>
+                <div class="meal-details">
+                    Whole grain cereal fortified with iron, served with milk and fresh fruits. Add a glass of orange juice for vitamin C.
+                </div>
+                <span class="nutrition-badge">Iron Rich</span>
+                <span class="nutrition-badge">Vitamin C</span>
+            </div>
+
+            <div class="diet-plan-card">
+                <div class="meal-type">🌞 Mid-Morning</div>
+                <div class="meal-items">Fresh Fruits & Nuts</div>
+                <div class="meal-details">
+                    Pomegranate, dates, and almonds. Great source of natural iron and healthy fats.
+                </div>
+                <span class="nutrition-badge">Antioxidants</span>
+            </div>
+
+            <div class="diet-plan-card">
+                <div class="meal-type">🍽️ Lunch</div>
+                <div class="meal-items">Spinach Dal with Rice & Vegetables</div>
+                <div class="meal-details">
+                    Lentils cooked with spinach, brown rice, mixed vegetables, and a side salad with lemon dressing.
+                </div>
+                <span class="nutrition-badge">Protein</span>
+                <span class="nutrition-badge">Iron Rich</span>
+                <span class="nutrition-badge">Fiber</span>
+            </div>
+
+            <div class="diet-plan-card">
+                <div class="meal-type">☕ Evening Snack</div>
+                <div class="meal-items">Beetroot Juice & Dry Fruits</div>
+                <div class="meal-details">
+                    Fresh beetroot juice with a handful of raisins and walnuts.
+                </div>
+                <span class="nutrition-badge">Iron Boost</span>
+            </div>
+
+            <div class="diet-plan-card">
+                <div class="meal-type">🌙 Dinner</div>
+                <div class="meal-items">Grilled Chicken with Vegetables</div>
+                <div class="meal-details">
+                    Lean protein with steamed broccoli, carrots, and sweet potato. Include a glass of milk.
+                </div>
+                <span class="nutrition-badge">Protein</span>
+                <span class="nutrition-badge">Calcium</span>
+            </div>
+
+            <div class="info-card" style="background: linear-gradient(135deg, #FFF3E0 0%, #FFE0B2 100%);">
+                <h3>⚠️ Foods to Avoid</h3>
+                <p>Avoid tea/coffee immediately after meals as they inhibit iron absorption. Space them at least 2 hours apart from your IFA tablet.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Learn Page -->
+    <div id="learnPage" class="page">
+        <div class="header">
+            <div class="profile-section">
+                <div class="profile-info">
+                    <div class="profile-avatar">📚</div>
+                    <div class="profile-details">
+                        <h3>Learn & Explore</h3>
+                        <p>Educational Resources</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container fade-in">
+            <div class="video-card">
+                <div class="video-thumbnail">
+                    <div class="play-button">
+                        <span class="material-icons-round" style="color: #C89A7C; font-size: 32px;">play_arrow</span>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Importance of Iron & Folic Acid</div>
+                    <div class="video-meta">Duration: 5:30 mins | Dr. Anjali Sharma</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #E1F5E1 0%, #A8D5BA 100%);">
+                    <div class="play-button">
+                        <span class="material-icons-round" style="color: #4CAF50; font-size: 32px;">play_arrow</span>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Nutrition for Third Trimester</div>
+                    <div class="video-meta">Duration: 8:15 mins | Nutritionist Team</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #E3F2FD 0%, #90CAF9 100%);">
+                    <div class="play-button">
+                        <span class="material-icons-round" style="color: #2196F3; font-size: 32px;">play_arrow</span>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Managing Side Effects of IFA Tablets</div>
+                    <div class="video-meta">Duration: 6:45 mins | Dr. Priya Patel</div>
+                </div>
+            </div>
+
+            <div class="video-card">
+                <div class="video-thumbnail" style="background: linear-gradient(135deg, #F3E5F5 0%, #CE93D8 100%);">
+                    <div class="play-button">
+                        <span class="material-icons-round" style="color: #9C27B0; font-size: 32px;">play_arrow</span>
+                    </div>
+                </div>
+                <div class="video-info">
+                    <div class="video-title">Gentle Stretches for Back Pain</div>
+                    <div class="video-meta">Duration: 7:20 mins | Yoga Instructor</div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h3>📖 Articles & Resources</h3>
+                <p>Access our library of articles on maternal health, nutrition, and wellness. Updated weekly with expert insights.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Page -->
+    <div id="chatPage" class="page">
+        <div class="header">
+            <div class="profile-section">
+                <div class="profile-info">
+                    <div class="profile-avatar">💬</div>
+                    <div class="profile-details">
+                        <h3>Health Assistant</h3>
+                        <p>Always here to help</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="chat-container">
+            <div class="messages-container" id="messagesContainer">
+                <div class="message bot">
+                    Hello Priya! 👋 How are you feeling today? You can log your symptoms or ask me anything about your health.
+                </div>
+                <div class="message bot">
+                    Remember to take your IFA tablet at 8:30 PM. Your baby feels your care in every tablet you take! 💕
+                </div>
+            </div>
+            <div class="chat-input-container">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your message...">
+                <button class="send-button" onclick="sendMessage()">
+                    <span class="material-icons-round">send</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active" onclick="showPage('homePage')">
+            <span class="material-icons-round nav-icon">home</span>
+            <span class="nav-label">Home</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showPage('dietPage')">
+            <span class="material-icons-round nav-icon">restaurant</span>
+            <span class="nav-label">Diet</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showPage('learnPage')">
+            <span class="material-icons-round nav-icon">school</span>
+            <span class="nav-label">Learn</span>
+        </a>
+        <a href="#" class="nav-item" onclick="showPage('chatPage')">
+            <span class="material-icons-round nav-icon">chat</span>
+            <span class="nav-label">Chat</span>
+        </a>
+    </nav>
+
+    <!-- Floating Action Button -->
+    <div class="fab" onclick="emergencyCall()">
+        <span class="material-icons-round">phone</span>
+    </div>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+
+            // Update nav items
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Mark as Taken
+        function markAsTaken() {
+            const button = event.currentTarget;
+            button.innerHTML = '✅ Marked as Taken!';
+            button.style.background = 'linear-gradient(135deg, #66BB6A 0%, #43A047 100%)';
+
+            // Update streak
+            setTimeout(() => {
+                const streakText = document.querySelector('.streak-text');
+                streakText.innerHTML = '5 Days Streak';
+
+                // Show success message
+                alert('Great job! 🎉 Your streak is now 5 days. Keep up the excellent work!');
+
+                // Reset button after 3 seconds
+                setTimeout(() => {
+                    button.innerHTML = 'Mark as Taken';
+                    button.style.background = 'linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%)';
+                }, 3000);
+            }, 1000);
+        }
+
+        // Send Message
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (message === '') return;
+
+            const container = document.getElementById('messagesContainer');
+
+            // Add user message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.textContent = message;
+            container.appendChild(userMsg);
+
+            // Clear input
+            input.value = '';
+
+            // Simulate bot response
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'message bot';
+
+                // Simple responses based on keywords
+                if (message.toLowerCase().includes('nausea') || message.toLowerCase().includes('sick')) {
+                    botMsg.textContent = 'I understand you're experiencing nausea. This is common. Try taking your IFA tablet with food or before bed. If it persists, consult your doctor.';
+                } else if (message.toLowerCase().includes('pain') || message.toLowerCase().includes('ache')) {
+                    botMsg.textContent = 'I've logged your pain symptom. Please describe where you feel the pain and I'll record it for your doctor to review.';
+                } else if (message.toLowerCase().includes('tired') || message.toLowerCase().includes('fatigue')) {
+                    botMsg.textContent = 'Fatigue is normal during pregnancy. Make sure you're taking your IFA tablets regularly as they help with energy levels. Also, get adequate rest.';
+                } else {
+                    botMsg.textContent = 'Thank you for sharing. I've logged this information. Is there anything specific you'd like to know or any other symptoms to report?';
+                }
+
+                container.appendChild(botMsg);
+                container.scrollTop = container.scrollHeight;
+            }, 1000);
+
+            // Scroll to bottom
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Enter key to send
+        document.getElementById('chatInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Emergency Call
+        function emergencyCall() {
+            if (confirm('Do you want to call your emergency contact or healthcare provider?')) {
+                alert('Emergency call feature will be activated. Calling your registered healthcare provider...');
+            }
+        }
+
+        // Add entrance animation on load
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                element.style.opacity = '0';
+                setTimeout(() => {
+                    element.style.transition = 'opacity 0.5s ease-out';
+                    element.style.opacity = '1';
+                }, 100);
+            });
+        });
+    </script>
+</body>
+</html>

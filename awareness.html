@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awareness - IFA Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <span class="material-icons-round">arrow_back</span>
+            </button>
+            <h1>Learn & Awareness</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="search-box">
+                <span class="material-icons-round">search</span>
+                <input type="text" id="searchVideos" placeholder="Search videos..." onkeyup="filterVideos()">
+            </div>
+
+            <div class="video-categories">
+                <button class="category-chip active" onclick="filterCategory('all')">All</button>
+                <button class="category-chip" onclick="filterCategory('ifa')">IFA Tablets</button>
+                <button class="category-chip" onclick="filterCategory('nutrition')">Nutrition</button>
+                <button class="category-chip" onclick="filterCategory('exercise')">Exercise</button>
+                <button class="category-chip" onclick="filterCategory('wellness')">Wellness</button>
+            </div>
+
+            <div id="videoGrid" class="video-grid"></div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+        <button class="fab-chat" onclick="toggleChat()">
+            <span class="material-icons-round">chat</span>
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadVideos);
+    </script>
+</body>
+</html>

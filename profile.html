@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - IFA Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <span class="material-icons-round">arrow_back</span>
+            </button>
+            <h1>Profile Settings</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="profile-header-section">
+                <div class="profile-avatar-large" id="profileAvatarLarge">P</div>
+                <button class="edit-avatar-btn" onclick="changeAvatar()">
+                    <span class="material-icons-round">photo_camera</span>
+                </button>
+            </div>
+
+            <form id="profileForm" onsubmit="updateProfile(event)">
+                <div class="form-section">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" id="profileName" value="" required>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Phone Number</label>
+                    <input type="tel" id="profilePhone" value="" required>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Date of Birth</label>
+                    <input type="date" id="profileDob" value="" required>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Last Menstrual Period (LMP)</label>
+                    <input type="date" id="profileLmp" value="" required>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Address</label>
+                    <textarea id="profileAddress" rows="2"></textarea>
+                </div>
+
+                <div class="form-section">
+                    <label class="form-label">Blood Group</label>
+                    <select id="bloodGroup">
+                        <option value="">Select</option>
+                        <option value="A+">A+</option>
+                        <option value="A-">A-</option>
+                        <option value="B+">B+</option>
+                        <option value="B-">B-</option>
+                        <option value="O+">O+</option>
+                        <option value="O-">O-</option>
+                        <option value="AB+">AB+</option>
+                        <option value="AB-">AB-</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="submit-btn">Update Profile</button>
+            </form>
+
+            <div class="section-header">
+                <h2>Settings</h2>
+            </div>
+
+            <div class="settings-list">
+                <div class="setting-item" onclick="goToPage('reminder-settings.html')">
+                    <div class="setting-info">
+                        <span class="material-icons-round">alarm</span>
+                        <span>Reminder Settings</span>
+                    </div>
+                    <span class="material-icons-round">chevron_right</span>
+                </div>
+                <div class="setting-item" onclick="goToPage('emergency.html')">
+                    <div class="setting-info">
+                        <span class="material-icons-round">emergency</span>
+                        <span>Emergency Contacts</span>
+                    </div>
+                    <span class="material-icons-round">chevron_right</span>
+                </div>
+                <div class="setting-item" onclick="toggleNotifications()">
+                    <div class="setting-info">
+                        <span class="material-icons-round">notifications</span>
+                        <span>Notifications</span>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="notificationsToggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item" onclick="changeLanguage()">
+                    <div class="setting-info">
+                        <span class="material-icons-round">language</span>
+                        <span>Language</span>
+                    </div>
+                    <span class="material-icons-round">chevron_right</span>
+                </div>
+            </div>
+
+            <button class="logout-btn" onclick="logout()">
+                <span class="material-icons-round">logout</span>
+                Logout
+            </button>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item active">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadProfile);
+    </script>
+</body>
+</html>

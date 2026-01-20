@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IFA Care - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="login-body">
+    <div class="login-container">
+        <div class="login-card register-card">
+            <div class="header-back">
+                <button class="back-btn" onclick="window.location='login.html'">
+                    <span class="material-icons-round">arrow_back</span>
+                </button>
+                <h2>Create Account</h2>
+            </div>
+
+            <form id="registerForm" onsubmit="handleRegister(event)">
+                <div class="input-group">
+                    <span class="material-icons-round input-icon">person</span>
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="material-icons-round input-icon">phone</span>
+                    <input type="tel" id="phone" placeholder="Phone Number" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="material-icons-round input-icon">cake</span>
+                    <input type="date" id="dob" placeholder="Date of Birth" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="material-icons-round input-icon">event</span>
+                    <input type="date" id="lmp" placeholder="Last Menstrual Period (LMP)" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="material-icons-round input-icon">location_on</span>
+                    <input type="text" id="address" placeholder="Address" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="material-icons-round input-icon">emergency</span>
+                    <input type="tel" id="emergencyContact" placeholder="Emergency Contact Number" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="material-icons-round input-icon">lock</span>
+                    <input type="password" id="newPassword" placeholder="Create Password" required>
+                </div>
+
+                <div class="input-group">
+                    <span class="material-icons-round input-icon">lock</span>
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+
+                <label class="checkbox-label terms">
+                    <input type="checkbox" required>
+                    <span>I agree to Terms & Conditions</span>
+                </label>
+
+                <button type="submit" class="login-btn">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

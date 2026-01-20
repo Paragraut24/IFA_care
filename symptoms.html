@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log Symptoms - IFA Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <span class="material-icons-round">arrow_back</span>
+            </button>
+            <h1>Log Symptoms</h1>
+        </header>
+
+        <main class="main-content">
+            <form id="symptomForm" onsubmit="submitSymptoms(event)">
+                <div class="form-section">
+                    <h3>Common Symptoms</h3>
+                    <div class="symptom-chips">
+                        <label class="chip-select">
+                            <input type="checkbox" name="symptom" value="Nausea">
+                            <span>😷 Nausea</span>
+                        </label>
+                        <label class="chip-select">
+                            <input type="checkbox" name="symptom" value="Headache">
+                            <span>🤕 Headache</span>
+                        </label>
+                        <label class="chip-select">
+                            <input type="checkbox" name="symptom" value="Fatigue">
+                            <span>😴 Fatigue</span>
+                        </label>
+                        <label class="chip-select">
+                            <input type="checkbox" name="symptom" value="Back Pain">
+                            <span>🔙 Back Pain</span>
+                        </label>
+                        <label class="chip-select">
+                            <input type="checkbox" name="symptom" value="Dizziness">
+                            <span>💫 Dizziness</span>
+                        </label>
+                        <label class="chip-select">
+                            <input type="checkbox" name="symptom" value="Constipation">
+                            <span>🤢 Constipation</span>
+                        </label>
+                        <label class="chip-select">
+                            <input type="checkbox" name="symptom" value="Heartburn">
+                            <span>🔥 Heartburn</span>
+                        </label>
+                        <label class="chip-select">
+                            <input type="checkbox" name="symptom" value="Swelling">
+                            <span>👣 Swelling</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Severity Level</h3>
+                    <div class="severity-selector">
+                        <label class="severity-option">
+                            <input type="radio" name="severity" value="Mild" required>
+                            <span class="severity-badge mild">Mild</span>
+                        </label>
+                        <label class="severity-option">
+                            <input type="radio" name="severity" value="Moderate">
+                            <span class="severity-badge moderate">Moderate</span>
+                        </label>
+                        <label class="severity-option">
+                            <input type="radio" name="severity" value="Severe">
+                            <span class="severity-badge severe">Severe</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Additional Notes</h3>
+                    <textarea id="symptomNotes" rows="4" placeholder="Describe your symptoms in detail..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Symptoms</button>
+            </form>
+
+            <div class="section-header">
+                <h2>Recent Symptoms</h2>
+            </div>
+            <div id="recentSymptoms"></div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+
+        <button class="fab-chat" onclick="toggleChat()">
+            <span class="material-icons-round">chat</span>
+        </button>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadRecentSymptoms);
+    </script>
+</body>
+</html>

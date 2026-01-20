@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency - IFA Care</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <header class="page-header">
+            <button class="back-btn" onclick="goBack()">
+                <span class="material-icons-round">arrow_back</span>
+            </button>
+            <h1>Emergency</h1>
+        </header>
+
+        <main class="main-content">
+            <div class="emergency-banner">
+                <span class="material-icons-round">warning</span>
+                <p>For immediate medical emergency, call ambulance</p>
+            </div>
+
+            <div class="emergency-call-card">
+                <h3>Emergency Ambulance</h3>
+                <a href="tel:108" class="emergency-call-btn">
+                    <span class="material-icons-round">phone</span>
+                    <span>Call 108</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <h2>Emergency Contacts</h2>
+                <button class="add-btn" onclick="addEmergencyContact()">
+                    <span class="material-icons-round">add</span>
+                </button>
+            </div>
+
+            <div id="emergencyContactsList"></div>
+
+            <div class="section-header">
+                <h2>Healthcare Provider</h2>
+            </div>
+
+            <div class="contact-card">
+                <div class="contact-info">
+                    <span class="material-icons-round">local_hospital</span>
+                    <div>
+                        <h4>Primary Health Center</h4>
+                        <p id="healthcareNumber">+91 1234567890</p>
+                    </div>
+                </div>
+                <a href="tel:+911234567890" class="call-btn">
+                    <span class="material-icons-round">phone</span>
+                </a>
+            </div>
+
+            <div class="section-header">
+                <h2>Important Numbers</h2>
+            </div>
+
+            <div class="important-numbers">
+                <div class="number-card">
+                    <span class="material-icons-round">medical_services</span>
+                    <div>
+                        <p class="number-label">Women Helpline</p>
+                        <a href="tel:1091" class="number-value">1091</a>
+                    </div>
+                </div>
+                <div class="number-card">
+                    <span class="material-icons-round">health_and_safety</span>
+                    <div>
+                        <p class="number-label">National Health Helpline</p>
+                        <a href="tel:1800180104104" class="number-value">1800-180-104-104</a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="material-icons-round">home</span>
+                <span>Home</span>
+            </a>
+            <a href="diet.html" class="nav-item">
+                <span class="material-icons-round">restaurant</span>
+                <span>Diet</span>
+            </a>
+            <a href="health-history.html" class="nav-item">
+                <span class="material-icons-round">analytics</span>
+                <span>History</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="material-icons-round">person</span>
+                <span>Profile</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', loadEmergencyContacts);
+    </script>
+</body>
+</html>
